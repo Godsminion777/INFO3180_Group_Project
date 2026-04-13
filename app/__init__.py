@@ -1,14 +1,21 @@
-import os
 from flask import Flask
 from flask_cors import CORS
-from dotenv import load_dotenv
+from flask_sqlalchemy import SQLAlchemy
+from app.config import Config
 
-load_dotenv()
+db = SQLAlchemy()
 
-app = Flask(__name__)
+def create_app():
+    app = Flask(__name__)
 
-origins = os.getenv("CORS_ORIGINS").split(",")
+    app.config.from_object(Config)
 
-CORS(app,
-     resources={r"/api/*": {"origins": origins}},
-     supports_credentials=True)
+    db.init_app(app)
+
+    CORS(
+    app,
+    resources={r"/api/*": {"origins": app.config["CORS_ORIGINS"]}},
+    supports_credentials=True
+     )
+
+    return app
