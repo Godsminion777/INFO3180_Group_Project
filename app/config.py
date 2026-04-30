@@ -20,3 +20,5 @@ class Config:
         "SECRET_KEY",
         "INFO3180_GROUP_PROJECT_SECRET_KEY"
     )
+
+    UPLOAD_FOLDER = os.path.join(os.getcwd(), "uploads")
