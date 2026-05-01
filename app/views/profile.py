@@ -3,6 +3,7 @@ from app import db
 from app.models import User, Profile, Interest
 import os
 from werkzeug.utils import secure_filename
+from app.views.utils import login_required
 
 profiles_bp = Blueprint('profiles', __name__)
 

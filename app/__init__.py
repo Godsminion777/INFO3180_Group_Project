@@ -27,9 +27,15 @@ def create_app():
 
     from app.views.profile import profiles_bp
     app.register_blueprint(profiles_bp, url_prefix='/api/profiles')
-
+    
     @app.route('/uploads/<path:filename>')
     def uploaded_file(filename):
         return send_from_directory(os.getenv('UPLOAD_FOLDER'), filename)
+    
+    from app.views.matches import matches_bp
+    app.register_blueprint(matches_bp, url_prefix='/api/matches')
+
+    from app.views.messages import messages_bp
+    app.register_blueprint(messages_bp, url_prefix='/api/messages')
 
     return app

@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify, session
 from app import db
 from app.models import User, Profile
 import bcrypt
+from app.views.utils import login_required
 
 auth_bp = Blueprint('auth', __name__)
 
