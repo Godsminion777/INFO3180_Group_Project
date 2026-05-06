@@ -22,6 +22,7 @@ def create_app():
     resources={r"/api/*": {"origins": app.config["CORS_ORIGINS"]}},
     supports_credentials=True
     )
+    
     from app.views.auth import auth_bp
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
 
