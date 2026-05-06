@@ -1,6 +1,8 @@
 import os
 from dotenv import load_dotenv
 
+#from backend import app
+
 load_dotenv()
 
 
@@ -25,5 +27,10 @@ class Config:
         "SECRET_KEY",
         "INFO3180_GROUP_PROJECT_SECRET_KEY"
     )
+
+    SESSION_COOKIE_HTTPONLY = os.getenv("SESSION_COOKIE_HTTPONLY", "True")
+    SESSION_COOKIE_SAMESITE = os.getenv("SESSION_COOKIE_SAMESITE", "Lax")
+    SESSION_COOKIE_SECURE = os.getenv("SESSION_COOKIE_SECURE", "False")
+
 
     UPLOAD_FOLDER = os.path.join(os.getcwd(), "uploads")

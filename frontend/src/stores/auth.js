@@ -8,15 +8,6 @@ export const useAuthStore = defineStore('auth', () => {
 
   const isLoggedIn = computed(() => !!user.value)
 
-  async function fetchMe() {
-    try {
-      const res = await authApi.getMe()
-      user.value = res.data.user
-    } catch {
-      user.value = null
-    }
-  }
-
   async function login(email, password) {
     loading.value = true
     try {
@@ -26,7 +17,6 @@ export const useAuthStore = defineStore('auth', () => {
     } finally {
       loading.value = false
     }
-    
   }
 
   async function register(data) {
@@ -38,8 +28,15 @@ export const useAuthStore = defineStore('auth', () => {
     } finally {
       loading.value = false
     }
-    
-    
+  }
+
+  async function fetchMe() {
+    try {
+      const res = await authApi.getMe()
+      user.value = res.data.user
+    } catch {
+      user.value = null
+    }
   }
 
   async function logout() {
@@ -47,5 +44,5 @@ export const useAuthStore = defineStore('auth', () => {
     user.value = null
   }
 
-  return { user, loading, isLoggedIn, fetchMe, login, register, logout }
+  return { user, loading, isLoggedIn, login, register, fetchMe, logout }
 })

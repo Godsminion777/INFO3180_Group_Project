@@ -6,6 +6,7 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' }
 })
 
+// Sends user back to login if is invalid
 api.interceptors.response.use(
   res => res,
   err => {
