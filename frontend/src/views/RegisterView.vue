@@ -2,7 +2,7 @@
   <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 px-4 py-8">
     <div class="w-full max-w-lg bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
       <div class="text-center mb-6">
-        <div class="text-4xl mb-2">💕</div>
+        <div class="text-4xl mb-2">🩵</div>
         <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Create Your Profile</h1>
       </div>
 
@@ -32,7 +32,8 @@
         <div class="grid grid-cols-2 gap-4">
           <div>
             <label class="field-label">Password *</label>
-            <input v-model="form.password" type="password" required class="field-input" placeholder="••••••••" />
+            {Add password error handling}
+            <input v-model="form.password" type="password" required class="field-input" placeholder="Must be 8-20 characters" />
           </div>
           <div>
             <label class="field-label">Age *</label>
@@ -93,7 +94,7 @@
         <button
           type="submit"
           :disabled="auth.loading"
-          class="w-full py-2.5 bg-pink-500 text-white font-medium rounded-full hover:bg-pink-600 disabled:opacity-50 transition-colors"
+          class="w-full py-2.5 bg-blue-500 text-white font-medium rounded-full hover:bg-pink-700 disabled:opacity-50 transition-colors"
         >
           {{ auth.loading ? 'Creating account...' : 'Create Account' }}
         </button>
@@ -101,7 +102,7 @@
 
       <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-4">
         Already have an account?
-        <router-link to="/login" class="text-pink-500 hover:text-pink-600 font-medium">Login</router-link>
+        <router-link to="/login" class="text-blue-500 hover:text-pink-600 font-medium">Login</router-link>
       </p>
     </div>
   </div>

@@ -19,18 +19,27 @@ export const useAuthStore = defineStore('auth', () => {
 
   async function login(email, password) {
     loading.value = true
-    const res = await authApi.login({ email, password })
-    user.value = res.data.user
-    loading.value = false
-    return res.data
+    try {
+      const res = await authApi.login({ email, password })
+      user.value = res.data.user
+      return res.data
+    } finally {
+      loading.value = false
+    }
+    
   }
 
   async function register(data) {
     loading.value = true
-    const res = await authApi.register(data)
-    user.value = res.data.user
-    loading.value = false
-    return res.data
+    try {
+      const res = await authApi.register(data)
+      user.value = res.data.user
+      return res.data
+    } finally {
+      loading.value = false
+    }
+    
+    
   }
 
   async function logout() {

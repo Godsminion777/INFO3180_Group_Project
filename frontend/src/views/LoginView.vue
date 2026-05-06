@@ -1,10 +1,10 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 px-4">
-    <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
+  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-pink-100 dark:from-blue-950 dark:to-pink-950 px-4">
+    <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
       <div class="text-center mb-8">
-        <div class="text-5xl mb-3">💕</div>
-        <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Welcome to Spark</h1>
-        <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Find your connection</p>
+        <div class="text-5xl mb-3">🌊</div>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">DriftDater</h1>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">🩵Go with the flow🩵</p>
       </div>
 
       <form @submit.prevent="handleLogin" class="space-y-4">
@@ -35,7 +35,7 @@
         <button
           type="submit"
           :disabled="auth.loading"
-          class="w-full py-2.5 bg-pink-500 text-white font-medium rounded-full hover:bg-pink-600 disabled:opacity-50 transition-colors"
+          class="w-full py-2.5 bg-blue-500 text-white font-medium rounded-full hover:bg-pink-600 disabled:opacity-50 transition-colors"
         >
           {{ auth.loading ? 'Logging in...' : 'Login' }}
         </button>
@@ -43,7 +43,7 @@
 
       <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
         No account?
-        <router-link to="/register" class="text-pink-500 hover:text-pink-600 font-medium">Sign up</router-link>
+        <router-link to="/register" class="text-blue-500 hover:text-pink-600 font-medium">Sign up</router-link>
       </p>
     </div>
   </div>
