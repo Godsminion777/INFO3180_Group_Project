@@ -12,7 +12,7 @@ def _engine_options():
 
 
 class Config:
-    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite:///dev.db")
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ENGINE_OPTIONS = _engine_options()
 
@@ -26,4 +26,4 @@ class Config:
         "INFO3180_GROUP_PROJECT_SECRET_KEY"
     )
 
-    UPLOAD_FOLDER = os.path.join(os.getcwd(), "uploads")
+    UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "uploads")

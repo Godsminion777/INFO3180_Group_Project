@@ -1,9 +1,10 @@
-from flask import Flask, app, send_from_directory
+from flask import Flask, send_from_directory
 import os
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from app.config import Config
+from werkzeug.utils import secure_filename
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -16,7 +17,7 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
     from app import models
-
+    os.makedirs(Config.UPLOAD_FOLDER, exist_ok=True)
     CORS(
     app,
     resources={r"/api/*": {"origins": app.config["CORS_ORIGINS"]}},
@@ -36,7 +37,8 @@ def create_app():
     
     @app.route('/uploads/<path:filename>')
     def uploaded_file(filename):
-        return send_from_directory(os.getenv('UPLOAD_FOLDER'), filename)
+        filename = secure_filename(filename)
+        return send_from_directory(Config.UPLOAD_FOLDER, filename)
     
     from app.views.matches import matches_bp
     app.register_blueprint(matches_bp, url_prefix='/api/matches')
