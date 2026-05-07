@@ -28,6 +28,12 @@ def create_app():
     from app.views.profile import profiles_bp
     app.register_blueprint(profiles_bp, url_prefix='/api/profiles')
     
+    @app.route("/")
+    def health():
+        return {
+            "message": "DriftDater API running"
+        }
+    
     @app.route('/uploads/<path:filename>')
     def uploaded_file(filename):
         return send_from_directory(os.getenv('UPLOAD_FOLDER'), filename)
