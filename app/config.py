@@ -16,6 +16,9 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ENGINE_OPTIONS = _engine_options()
 
+    SESSION_COOKIE_SAMESITE = "None"
+    SESSION_COOKIE_SECURE = True
+
     CORS_ORIGINS = os.getenv(
         "CORS_ORIGINS",
         "http://localhost:5173"
