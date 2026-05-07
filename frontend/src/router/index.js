@@ -22,7 +22,7 @@ const router = createRouter({
 
 router.beforeEach(async (to) => {
   const auth = useAuthStore()
-  if (!auth.user) await auth.fetchMe()
+  if (!auth.authChecked) await auth.fetchMe()
 
   if (to.meta.auth && !auth.isLoggedIn) return '/login'
   if (to.meta.guest && auth.isLoggedIn) return '/browse'

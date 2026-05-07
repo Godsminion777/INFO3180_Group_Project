@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import * as authApi from '../api/auth'
+import * as authApi from '@/api/auth'
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref(null)
+  const authChecked = ref(false)
   const loading = ref(false)
 
   const isLoggedIn = computed(() => !!user.value)
@@ -31,11 +32,14 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   async function fetchMe() {
+    console.log('fetchMe called from:', new Error().stack)
     try {
-      const res = await authApi.getMe()
+      const res = await authApi.me()
       user.value = res.data.user
     } catch {
       user.value = null
+    } finally {
+      authChecked.value = true
     }
   }
 
@@ -44,5 +48,5 @@ export const useAuthStore = defineStore('auth', () => {
     user.value = null
   }
 
-  return { user, loading, isLoggedIn, login, register, fetchMe, logout }
+  return { user, loading, isLoggedIn, login, register, fetchMe, logout, authChecked }
 })

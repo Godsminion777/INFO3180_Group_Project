@@ -1,4 +1,4 @@
-from flask import Flask, app, send_from_directory
+from flask import Flask, send_from_directory
 import os
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
@@ -22,8 +22,6 @@ def create_app():
     resources={r"/api/*": {"origins": app.config["CORS_ORIGINS"]}},
     supports_credentials=True
     )
-
-    
     
     from app.views.auth import auth_bp
     app.register_blueprint(auth_bp, url_prefix='/api/auth')

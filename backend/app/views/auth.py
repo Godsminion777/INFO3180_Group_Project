@@ -10,7 +10,10 @@ auth_bp = Blueprint('auth', __name__)
 def register():
     data = request.get_json()
 
-    required =['email', 'username', 'password', 'first_name', 'last_name', 'age', 'gender', 'looking_for']
+    required =['first_name', 'last_name', 'email', 'username', 'password', 'age', 'gender', 'looking_for', 'location', 'occupation', 'relationship_goal', 'bio']
+    #required = ['email', 'username', 'password']
+
+
     for field in required:
         if field not in data:
             return jsonify({'error': f'Missing required field: {field}'}), 400
@@ -38,10 +41,10 @@ def register():
         age=data['age'],
         gender=data['gender'],
         looking_for=data['looking_for'],
-        bio=data.get('bio', ''),
         location=data.get('location', ''),
         occupation=data.get('occupation', ''),
-        relationship_goal=data.get('relationship_goal', '')
+        relationship_goal=data.get('relationship_goal', ''),
+        bio=data.get('bio', '')
     )
     db.session.add(profile)
     db.session.commit()

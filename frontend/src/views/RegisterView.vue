@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 px-4 py-8">
+  <div class="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-100 to-pink-100 dark:from-blue-950 dark:to-pink-950 px-4 py-8">
     <div class="w-full max-w-lg bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
       <div class="text-center mb-6">
         <div class="text-4xl mb-2">🩵</div>
@@ -120,7 +120,7 @@ const error = ref('')
 const form = ref({
   first_name: '', last_name: '', email: '', username: '',
   password: '', age: 18, gender: '', looking_for: '',
-  location: '', bio: '', occupation: '', relationship_goal: ''
+  location: '', occupation: '', relationship_goal: '', bio: ''
 })
 
 const emailError = computed(() => {
@@ -139,6 +139,7 @@ async function handleRegister() {
     error.value = e.response?.data?.error || 'Registration failed'
   }
 }
+
 </script>
 
 <style scoped>

@@ -10,6 +10,6 @@ app.use(createPinia())
 
 const auth = useAuthStore()
 auth.fetchMe().finally(() => {
-  app.use(router)
-  app.mount('#app')
+    app.use(router)
+    app.mount('#app')
 })

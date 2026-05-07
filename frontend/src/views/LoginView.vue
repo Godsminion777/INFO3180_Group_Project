@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-pink-100 dark:from-blue-950 dark:to-pink-950 px-4">
+  <div class="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-100 to-pink-100 dark:from-blue-950 dark:to-pink-950 px-4">
     <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
       <div class="text-center mb-8">
         <div class="text-5xl mb-3">🌊</div>
@@ -56,7 +56,9 @@ import { useAuthStore } from '../stores/auth'
 
 const auth = useAuthStore()
 const router = useRouter()
-const form = ref({ email: '', password: '' })
+const form = ref({ 
+  email: '',
+  password: '' })
 const error = ref('')
 
 async function handleLogin() {

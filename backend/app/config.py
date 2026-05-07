@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 
-#from backend import app
 
 load_dotenv()
 
@@ -9,6 +8,8 @@ load_dotenv()
 def _engine_options():
     db_url = os.getenv("DATABASE_URL", "")
     if db_url.startswith("sqlite"):
+        return {}
+    if "localhost" in db_url or "127.0.0.1" in db_url:
         return {}
     return {"connect_args": {"sslmode": "require"}}
 
