@@ -9,7 +9,7 @@
           <option value="age">By Age</option>
         </select>
         <button @click="showFilters = !showFilters" class="flex items-center gap-1 text-sm px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
-          🔧 Filter
+          Filters
         </button>
       </div>
     </div>
