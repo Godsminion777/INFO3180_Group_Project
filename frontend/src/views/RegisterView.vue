@@ -27,6 +27,7 @@
         <div>
           <label class="field-label">Username *</label>
           <input v-model="form.username" required class="field-input" placeholder="cooluser123" />
+          <p v-if="usernameError" class="text-red-500 text-xs mt-1">{{ usernameError }}</p>
         </div>
 
         <div class="grid grid-cols-2 gap-4">
@@ -34,10 +35,12 @@
             <label class="field-label">Password *</label>
             {Add password error handling}
             <input v-model="form.password" type="password" required class="field-input" placeholder="Must be 8-20 characters" />
+            <p v-if="passwordError" class="text-red-500 text-xs mt-1">{{ passwordError }}</p>
           </div>
           <div>
             <label class="field-label">Age *</label>
             <input v-model.number="form.age" type="number" min="18" max="120" required class="field-input" />
+            <p v-if="ageError" class="text-red-500 text-xs mt-1">{{ ageError }}</p>
           </div>
         </div>
 
@@ -129,8 +132,32 @@ const emailError = computed(() => {
   return re.test(form.value.email) ? '' : 'Invalid email address'
 })
 
+const usernameError = computed(() => {
+  if (!form.value.username) return ''
+  if (form.value.username.length < 6) return 'Username must be at least 6 characters'
+  if (form.value.username.length > 20) return 'Username must be 20 characters or fewer'
+  if (!/^[a-zA-Z0-9_]+$/.test(form.value.username)) {
+    return 'Username can only contain letters, numbers, and underscores'
+  }
+  return ''
+})
+
+const passwordError = computed(() => {
+  if (!form.value.password) return ''
+  if (form.value.password.length < 8) return 'Password must be 8-20 characters.'
+  if (form.value.password.length > 20) return 'Password must be 8-20 characters.'
+  return ''
+})
+
+const ageError = computed(() => {
+  if (!form.value.age) return ''
+  if (form.value.age < 18) return 'Users must be over 18 years old.'
+  if (form.value.age > 120) return 'Users must be over 18 years old.'
+  return ''
+})
+
 async function handleRegister() {
-  if (emailError.value) return
+  if (emailError.value || usernameError.value || passwordError.value || ageError.value) return
   error.value = ''
   try {
     await auth.register(form.value)
