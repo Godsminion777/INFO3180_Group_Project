@@ -3,6 +3,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 
+
 export default defineConfig({
   plugins: [vue(), tailwindcss()],
   resolve: {
@@ -11,16 +12,6 @@ export default defineConfig({
     }
   },
   server: {
-    port: 5173,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8080',
-        changeOrigin: true
-      },
-      '/uploads': {
-        target: 'http://localhost:8080',
-        changeOrigin: true
-      }
-    }
+    port: 5173
   }
 })
