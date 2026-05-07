@@ -1,8 +1,8 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 px-4 py-8">
+  <div class="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-100 to-pink-100 dark:from-blue-950 dark:to-pink-950 px-4 py-8">
     <div class="w-full max-w-lg bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
       <div class="text-center mb-6">
-        <div class="text-4xl mb-2">💕</div>
+        <div class="text-4xl mb-2">🩵</div>
         <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Create Your Profile</h1>
       </div>
 
@@ -27,16 +27,20 @@
         <div>
           <label class="field-label">Username *</label>
           <input v-model="form.username" required class="field-input" placeholder="cooluser123" />
+          <p v-if="usernameError" class="text-red-500 text-xs mt-1">{{ usernameError }}</p>
         </div>
 
         <div class="grid grid-cols-2 gap-4">
           <div>
             <label class="field-label">Password *</label>
-            <input v-model="form.password" type="password" required class="field-input" placeholder="••••••••" />
+            {Add password error handling}
+            <input v-model="form.password" type="password" required class="field-input" placeholder="Must be 8-20 characters" />
+            <p v-if="passwordError" class="text-red-500 text-xs mt-1">{{ passwordError }}</p>
           </div>
           <div>
             <label class="field-label">Age *</label>
             <input v-model.number="form.age" type="number" min="18" max="120" required class="field-input" />
+            <p v-if="ageError" class="text-red-500 text-xs mt-1">{{ ageError }}</p>
           </div>
         </div>
 
@@ -93,7 +97,7 @@
         <button
           type="submit"
           :disabled="auth.loading"
-          class="w-full py-2.5 bg-pink-500 text-white font-medium rounded-full hover:bg-pink-600 disabled:opacity-50 transition-colors"
+          class="w-full py-2.5 bg-blue-500 text-white font-medium rounded-full hover:bg-pink-700 disabled:opacity-50 transition-colors"
         >
           {{ auth.loading ? 'Creating account...' : 'Create Account' }}
         </button>
@@ -101,7 +105,7 @@
 
       <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-4">
         Already have an account?
-        <router-link to="/login" class="text-pink-500 hover:text-pink-600 font-medium">Login</router-link>
+        <router-link to="/login" class="text-blue-500 hover:text-pink-600 font-medium">Login</router-link>
       </p>
     </div>
   </div>
@@ -119,7 +123,7 @@ const error = ref('')
 const form = ref({
   first_name: '', last_name: '', email: '', username: '',
   password: '', age: 18, gender: '', looking_for: '',
-  location: '', bio: '', occupation: '', relationship_goal: ''
+  location: '', occupation: '', relationship_goal: '', bio: ''
 })
 
 const emailError = computed(() => {
@@ -128,8 +132,32 @@ const emailError = computed(() => {
   return re.test(form.value.email) ? '' : 'Invalid email address'
 })
 
+const usernameError = computed(() => {
+  if (!form.value.username) return ''
+  if (form.value.username.length < 6) return 'Username must be at least 6 characters'
+  if (form.value.username.length > 20) return 'Username must be 20 characters or fewer'
+  if (!/^[a-zA-Z0-9_]+$/.test(form.value.username)) {
+    return 'Username can only contain letters, numbers, and underscores'
+  }
+  return ''
+})
+
+const passwordError = computed(() => {
+  if (!form.value.password) return ''
+  if (form.value.password.length < 8) return 'Password must be 8-20 characters.'
+  if (form.value.password.length > 20) return 'Password must be 8-20 characters.'
+  return ''
+})
+
+const ageError = computed(() => {
+  if (!form.value.age) return ''
+  if (form.value.age < 18) return 'Users must be over 18 years old.'
+  if (form.value.age > 120) return 'Users must be over 18 years old.'
+  return ''
+})
+
 async function handleRegister() {
-  if (emailError.value) return
+  if (emailError.value || usernameError.value || passwordError.value || ageError.value) return
   error.value = ''
   try {
     await auth.register(form.value)
@@ -138,6 +166,7 @@ async function handleRegister() {
     error.value = e.response?.data?.error || 'Registration failed'
   }
 }
+
 </script>
 
 <style scoped>

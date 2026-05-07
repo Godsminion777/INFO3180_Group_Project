@@ -28,8 +28,8 @@ coverage
 *.sw?
 
 # Python
-__pycache__
-venv
+__pycache__/
+venv/
 *.pyc
 *.pyo
 
@@ -39,4 +39,3 @@ venv
 
 # OS
 .DS_Store
-
