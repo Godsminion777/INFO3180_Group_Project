@@ -37,7 +37,6 @@ def create_app():
     
     @app.route('/uploads/<path:filename>')
     def uploaded_file(filename):
-        filename = secure_filename(filename)
         return send_from_directory(Config.UPLOAD_FOLDER, filename)
     
     from app.views.matches import matches_bp
