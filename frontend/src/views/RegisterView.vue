@@ -1,53 +1,52 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-100 to-pink-100 dark:from-blue-950 dark:to-pink-950 px-4 py-8">
-    <div class="w-full max-w-lg bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
+  <div class="register-page min-h-screen flex items-center justify-center bg-linear-to-br from-pink-200 to-blue-200 px-4 py-8">
+    <div class="register-card w-full max-w-lg bg-white rounded-2xl shadow-xl p-8">
       <div class="text-center mb-6">
         <div class="text-4xl mb-2">🩵</div>
-        <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Create Your Profile</h1>
+        <h1 class="h1">Create Your Profile</h1>
       </div>
 
       <form @submit.prevent="handleRegister" class="space-y-4">
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="field-label">First Name *</label>
-            <input v-model="form.first_name" required class="field-input" placeholder="Jane" />
+            <label for="first-name" class="field-label">First Name *</label>
+            <input id="first-name" v-model="form.first_name" required autocomplete="given-name" class="field-input" placeholder="Jane" />
           </div>
           <div>
-            <label class="field-label">Last Name *</label>
-            <input v-model="form.last_name" required class="field-input" placeholder="Doe" />
+            <label for="last-name" class="field-label">Last Name *</label>
+            <input id="last-name" v-model="form.last_name" required autocomplete="family-name" class="field-input" placeholder="Doe" />
           </div>
         </div>
 
         <div>
-          <label class="field-label">Email *</label>
-          <input v-model="form.email" type="email" required class="field-input" placeholder="you@example.com" />
+          <label for="email" class="field-label">Email *</label>
+          <input id="email" v-model="form.email" type="email" required autocomplete="email" class="field-input" placeholder="you@example.com" />
           <p v-if="emailError" class="text-red-500 text-xs mt-1">{{ emailError }}</p>
         </div>
 
         <div>
-          <label class="field-label">Username *</label>
-          <input v-model="form.username" required class="field-input" placeholder="cooluser123" />
+          <label for="username" class="field-label">Username *</label>
+          <input id="username" v-model="form.username" required autocomplete="username" class="field-input" placeholder="cooluser123" />
           <p v-if="usernameError" class="text-red-500 text-xs mt-1">{{ usernameError }}</p>
         </div>
 
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="field-label">Password *</label>
-            {Add password error handling}
-            <input v-model="form.password" type="password" required class="field-input" placeholder="Must be 8-20 characters" />
+            <label for="password" class="field-label">Password *</label>
+            <input id="password" v-model="form.password" type="password" required autocomplete="new-password" class="field-input" placeholder="Must be 8-20 characters" />
             <p v-if="passwordError" class="text-red-500 text-xs mt-1">{{ passwordError }}</p>
           </div>
           <div>
-            <label class="field-label">Age *</label>
-            <input v-model.number="form.age" type="number" min="18" max="120" required class="field-input" />
+            <label for="age" class="field-label">Age *</label>
+            <input id="age" v-model.number="form.age" type="number" min="18" max="120" required class="field-input" />
             <p v-if="ageError" class="text-red-500 text-xs mt-1">{{ ageError }}</p>
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="field-label">Gender *</label>
-            <select v-model="form.gender" required class="field-input">
+            <label for="gender" class="field-label">Gender *</label>
+            <select id="gender" v-model="form.gender" required class="field-input">
               <option value="">Select...</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -56,8 +55,8 @@
             </select>
           </div>
           <div>
-            <label class="field-label">Looking For *</label>
-            <select v-model="form.looking_for" required class="field-input">
+            <label for="looking-for" class="field-label">Looking For *</label>
+            <select id="looking-for" v-model="form.looking_for" required class="field-input">
               <option value="">Select...</option>
               <option value="male">Men</option>
               <option value="female">Women</option>
@@ -67,18 +66,18 @@
         </div>
 
         <div>
-          <label class="field-label">Location</label>
-          <input v-model="form.location" class="field-input" placeholder="City, Country" />
+          <label for="location" class="field-label">Location</label>
+          <input id="location" v-model="form.location" autocomplete="address-level2" class="field-input" placeholder="City, Country" />
         </div>
 
         <div>
-          <label class="field-label">Occupation</label>
-          <input v-model="form.occupation" class="field-input" placeholder="Software Engineer" />
+          <label for="occupation" class="field-label">Occupation</label>
+          <input id="occupation" v-model="form.occupation" autocomplete="organization-title" class="field-input" placeholder="Software Engineer" />
         </div>
 
         <div>
-          <label class="field-label">Relationship Goal</label>
-          <select v-model="form.relationship_goal" class="field-input">
+          <label for="relationship-goal" class="field-label">Relationship Goal</label>
+          <select id="relationship-goal" v-model="form.relationship_goal" class="field-input">
             <option value="">Select...</option>
             <option value="long-term">Long-term relationship</option>
             <option value="casual">Casual dating</option>
@@ -88,8 +87,8 @@
         </div>
 
         <div>
-          <label class="field-label">Bio</label>
-          <textarea v-model="form.bio" rows="3" class="field-input resize-none" placeholder="Tell people a little about yourself..."></textarea>
+          <label for="bio" class="field-label">Bio</label>
+          <textarea id="bio" v-model="form.bio" rows="3" class="field-input resize-none" placeholder="Tell people a little about yourself..."></textarea>
         </div>
 
         <div v-if="error" class="text-red-500 text-sm bg-red-50 dark:bg-red-900/20 px-3 py-2 rounded-lg">{{ error }}</div>
@@ -97,7 +96,7 @@
         <button
           type="submit"
           :disabled="auth.loading"
-          class="w-full py-2.5 bg-blue-500 text-white font-medium rounded-full hover:bg-pink-700 disabled:opacity-50 transition-colors"
+          class="w-full py-3 text-base bg-blue-500 text-white font-medium rounded-full hover:bg-pink-500 disabled:opacity-50 transition-colors"
         >
           {{ auth.loading ? 'Creating account...' : 'Create Account' }}
         </button>
@@ -105,7 +104,7 @@
 
       <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-4">
         Already have an account?
-        <router-link to="/login" class="text-blue-500 hover:text-pink-600 font-medium">Login</router-link>
+        <router-link to="/login" class="text-blue-500 hover:text-pink-500 font-medium">Login</router-link>
       </p>
     </div>
   </div>
@@ -171,10 +170,36 @@ async function handleRegister() {
 
 <style scoped>
 @reference "tailwindcss";
+
+.h1 {
+  @apply text-2xl font-bold text-gray-900;
+}
+
 .field-label {
-  @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1;
+  @apply block text-sm font-medium text-blue-900 mb-1;
 }
+
 .field-input {
-  @apply w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-pink-300;
+  @apply w-full px-3 py-3 border border-gray-300 rounded-lg bg-white text-base focus:outline-none focus:ring-2 focus:ring-pink-300;
 }
+
+
+@media (prefers-color-scheme: dark) {
+  .register-page {
+    @apply from-blue-950 to-pink-900;
+  }
+  .register-card {
+    @apply bg-gray-800;
+  }
+  .h1 {
+    @apply text-pink-100;
+  }
+  .field-label {
+    @apply text-gray-300;
+  }
+  .field-input {
+    @apply border-gray-600 bg-gray-700 focus:ring-pink-700;
+  }
+}
+
 </style>

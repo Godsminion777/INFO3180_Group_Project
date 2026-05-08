@@ -1,14 +1,14 @@
 <template>
   <nav class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40">
     <div class="max-w-5xl mx-auto px-4 flex items-center justify-between h-14">
-      <router-link to="/browse" class="text-xl font-bold text-blue-500">🌊 DriftDater</router-link>
+      <router-link to="/browse" class="text-xl font-bold text-blue-500 dark:text-pink-500">🌊 DriftDater</router-link>
 
       <div v-if="auth.isLoggedIn" class="flex items-center gap-4">
         <router-link to="/browse" class="nav-link">Browse</router-link>
         <router-link to="/matches" class="nav-link">Matches</router-link>
         <router-link to="/messages" class="nav-link relative">
           Messages
-          <span v-if="msgStore.unreadCount" class="absolute -top-1 -right-2 bg-pink-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+          <span v-if="msgStore.unreadCount" class="absolute -top-1 -right-2 bg-pink-400 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
             {{ msgStore.unreadCount }}
           </span>
         </router-link>
@@ -27,7 +27,7 @@
 
       <div v-else class="flex gap-3">
         <router-link to="/login" class="nav-link">Login</router-link>
-        <router-link to="/register" class="px-4 py-1 bg-blue-500 text-white rounded-full text-sm hover:bg-pink-700">Sign up</router-link>
+        <router-link to="/register" class="px-4 py-1 bg-blue-500 text-white rounded-full text-sm hover:bg-pink-500">Sign up</router-link>
       </div>
     </div>
   </nav>
@@ -52,7 +52,8 @@ async function handleLogout() {
 
 <style scoped>
 @reference "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 .nav-link {
-  @apply text-sm text-gray-600 dark:text-gray-300 hover:text-pink-500 dark:hover:text-pink-400 relative transition-colors;
+  @apply text-sm text-blue-400 dark:text-pink-400 hover:text-pink-600 dark:hover:text-blue-300 relative transition-colors;
 }
 </style>
