@@ -2,7 +2,11 @@ import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 
 export const useUiStore = defineStore('ui', () => {
-  const darkMode = ref(localStorage.getItem('darkMode') === 'true')
+  //const darkMode = ref(localStorage.getItem('darkMode') === 'true')
+  const stored = localStorage.getItem('darkMode')
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+  const darkMode = ref(stored !== null ? stored === 'true' : prefersDark)
+  
   const notifications = ref([])
   let nextId = 0
 
