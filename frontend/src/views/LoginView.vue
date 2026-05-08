@@ -2,7 +2,7 @@
   <div class="login-page min-h-screen flex items-center justify-center bg-linear-to-br from-pink-200 to-blue-200 px-4 py-8">
     <div class="login-card w-full max-w-md bg-white  rounded-2xl shadow-xl p-6">
       <div class="text-center mb-8">
-        <div class="text-5xl mb-3">🌊</div>
+        <Logo size="xl"/>
         <h1 class="h1">DriftDater</h1>
         <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">🩵Go with the flow🩵</p>
       </div>
@@ -57,6 +57,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
+import Logo from '../components/Logo.vue'
 
 const auth = useAuthStore()
 const router = useRouter()
