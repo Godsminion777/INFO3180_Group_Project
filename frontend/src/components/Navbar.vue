@@ -1,7 +1,10 @@
 <template>
   <nav class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40">
     <div class="max-w-5xl mx-auto px-4 flex items-center justify-between h-14">
-      <router-link to="/browse" class="text-xl font-bold text-blue-500 dark:text-pink-500">🌊 DriftDater</router-link>
+      <router-link to="/browse" class="flex items-center gap-2 text-xl font-bold text-blue-500 dark:text-pink-500">
+        <Logo size="sm" />
+        <span>DriftDater</span>
+      </router-link>
 
       <div v-if="auth.isLoggedIn" class="flex items-center gap-4">
         <router-link to="/browse" class="nav-link">Browse</router-link>
@@ -38,6 +41,7 @@ import { useAuthStore } from '../stores/auth'
 import { useMessagesStore } from '../stores/messages'
 import { useUiStore } from '../stores/ui'
 import { useRouter } from 'vue-router'
+import Logo from './Logo.vue'
 
 const auth = useAuthStore()
 const msgStore = useMessagesStore()

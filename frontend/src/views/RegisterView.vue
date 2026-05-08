@@ -2,7 +2,7 @@
   <div class="register-page min-h-screen flex items-center justify-center bg-linear-to-br from-pink-200 to-blue-200 px-4 py-8">
     <div class="register-card w-full max-w-lg bg-white rounded-2xl shadow-xl p-8">
       <div class="text-center mb-6">
-        <div class="text-4xl mb-2">🩵</div>
+        <Logo size="xl"/>
         <h1 class="h1">Create Your Profile</h1>
       </div>
 
@@ -114,6 +114,7 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
+import Logo from '../components/Logo.vue'
 
 const auth = useAuthStore()
 const router = useRouter()
