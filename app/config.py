@@ -29,4 +29,4 @@ class Config:
         "INFO3180_GROUP_PROJECT_SECRET_KEY"
     )
 
-    UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "uploads")
+    UPLOAD_FOLDER = os.path.join(os.getcwd(), "uploads")
