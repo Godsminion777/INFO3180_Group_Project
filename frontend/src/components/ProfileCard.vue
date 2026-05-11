@@ -3,7 +3,7 @@
     <div class="relative h-48 bg-linear-to-br from-pink-100 to-purple-100 dark:from-pink-900/30 dark:to-purple-900/30">
       <img
         v-if="profile.photo_url"
-        :src="profile.photo_url"
+        :src="`http://127.0.0.1:5000/${profile.photo_url}`"
         :alt="`${profile.first_name}'s photo`"
         class="w-full h-full object-cover"
       />
